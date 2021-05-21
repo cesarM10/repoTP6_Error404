@@ -1,18 +1,32 @@
-/**
- * 
- */
 package ar.edu.unju.fi.tp6.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/**
- * @author Alvaro
- *
- */
+
 @Component("compraObj")
+@Entity
+@Table(name = "compras")
 public class Compra {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "com_id")
 	private int id ;
+	@Autowired
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "pro_codigo", nullable = false)
 	private Producto producto ;
+	@Column(name = "com_cantidad", nullable =  false)
 	private int cantidad ;
 
 	
